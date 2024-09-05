@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import yelp from '../api/yelp';
 
 const useRestaurants = () => {
-  const [results, setResults] = useState([]);
+  const [restaurants, setRestaurants] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
 
   const searchApi = async (term) => {
@@ -10,7 +10,7 @@ const useRestaurants = () => {
       const response = await yelp.get('/search', {
         params: { limit: 50, term: term, location: 'san jose' },
       });
-      setResults(response.data.businesses);
+      setRestaurants(response.data.businesses);
       setErrorMessage('');
     } catch (error) {
       console.log(error);
@@ -22,7 +22,7 @@ const useRestaurants = () => {
     searchApi('pasta');
   }, []);
 
-  return [searchApi, results, errorMessage];
+  return [searchApi, restaurants, errorMessage];
 };
 
 export default useRestaurants;

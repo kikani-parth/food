@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
+import RestaurantDetail from './RestaurantDetail';
 
-const RestaurantsList = ({ title, results }) => {
+const RestaurantsList = ({ title, restuarants }) => {
   return (
-    <View>
+    <View style={styles.containerStyle}>
       <Text style={styles.titleStyle}>{title}</Text>
       <FlatList
         horizontal={true}
-        data={results}
-        keyExtractor={(result) => result.id}
+        showsHorizontalScrollIndicator={false}
+        data={restuarants}
+        keyExtractor={(restuarant) => restuarant.id}
         renderItem={({ item }) => {
-          return <Text>{item.name}</Text>;
+          return <RestaurantDetail restaurant={item} />;
         }}
       />
     </View>
@@ -18,9 +20,14 @@ const RestaurantsList = ({ title, results }) => {
 };
 
 const styles = StyleSheet.create({
+  containerStyle: {
+    marginBottom: 10,
+  },
   titleStyle: {
     fontSize: 18,
     fontWeight: 'bold',
+    marginLeft: 15,
+    marginBottom: 5,
   },
 });
 
