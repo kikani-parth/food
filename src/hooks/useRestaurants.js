@@ -1,3 +1,5 @@
+//useRestaurants.js
+
 import { useState, useEffect } from 'react';
 import yelp from '../api/yelp';
 
@@ -8,7 +10,7 @@ const useRestaurants = () => {
   const searchApi = async (term) => {
     try {
       const response = await yelp.get('/search', {
-        params: { limit: 50, term: term, location: 'san jose' },
+        params: { limit: 50, term: term, location: 'san jose' }, // limit === 50 (max)
       });
       setRestaurants(response.data.businesses);
       setErrorMessage('');
