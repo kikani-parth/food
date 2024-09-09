@@ -38,7 +38,6 @@ const RestaurantScreen = ({ navigation }) => {
 
   if (!restaurant) return null;
 
-  console.log(restaurant.location.display_address);
   // Extract the restaurant address and join it into a single string
   const address = restaurant.location.display_address.join(', ');
 
@@ -75,7 +74,7 @@ const RestaurantScreen = ({ navigation }) => {
           )}
           onViewableItemsChanged={onViewableItemsChanged}
           viewabilityConfig={viewabilityConfig}
-          style={{ height: screenHeight * 0.5 }} // Set FlatList height to 50% of screen height
+          style={{ height: screenHeight * 0.55 }} // Set FlatList height to 50% of screen height
         />
         <Text style={styles.nameStyle}>{restaurant.name}</Text>
         <View style={styles.addressContainer}>
@@ -91,8 +90,36 @@ const RestaurantScreen = ({ navigation }) => {
           <Entypo name="old-phone" size={21} color="#6495ED" />
           <Text style={styles.phoneNumberStyle}>{restaurant.phone}</Text>
         </View>
-        <View>
-          <Card></Card>
+        <View style={styles.infoContainer}>
+          <Card
+            title="Reviews"
+            content={`${restaurant.review_count} reviews`}
+            styles={{
+              cardContainer: styles.cardContainer,
+              cardTitle: styles.cardTitle,
+              cardContent: styles.cardContent,
+            }}
+          />
+          <Card
+            title="Rating"
+            content={`${restaurant.rating} stars`}
+            styles={{
+              cardContainer: styles.cardContainer,
+              cardTitle: styles.cardTitle,
+              cardContent: styles.cardContent,
+            }}
+          />
+          {restaurant.transactions.length > 0 ? (
+            <Card
+              title="Transactions"
+              content={restaurant.transactions.join(', ')}
+              styles={{
+                cardContainer: styles.cardContainer,
+                cardTitle: styles.cardTitle,
+                cardContent: styles.cardContent,
+              }}
+            />
+          ) : null}
         </View>
       </View>
     </View>
@@ -159,7 +186,32 @@ const styles = StyleSheet.create({
     marginLeft: 12,
     flexWrap: 'wrap',
   },
-  phoneNumberStyle: { color: '#ffffff', marginLeft: 6 },
+  phoneNumberStyle: {
+    color: '#ffffff',
+    marginLeft: 6,
+  },
+  infoContainer: {
+    margin: 15,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  cardContainer: {
+    backgroundColor: '#FAF9F6',
+    borderRadius: 8,
+    padding: 15,
+    marginBottom: 10,
+    width: Dimensions.get('window').width / 2 - 30, // Adjust the width to fit 2 cards per row with margins
+    marginRight: 15, // Add margin to the right of each card
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#FF5F15',
+  },
+  cardContent: {
+    color: 'black',
+    marginTop: 5,
+  },
 });
 
 export default RestaurantScreen;
