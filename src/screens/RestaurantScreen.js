@@ -11,6 +11,7 @@ import yelp from '../api/yelp';
 import BackButton from '../components/BackButton';
 import { Ionicons, Entypo } from '@expo/vector-icons';
 import Card from '../components/Card';
+import formatHours from '../utils/formatHours';
 
 const RestaurantScreen = ({ navigation }) => {
   const [restaurant, setRestaurant] = useState(null);
@@ -40,6 +41,8 @@ const RestaurantScreen = ({ navigation }) => {
 
   // Extract the restaurant address and join it into a single string
   const address = restaurant.location.display_address.join(', ');
+
+  const hours = formatHours(restaurant.hours || []);
 
   return (
     <View style={styles.container}>
@@ -120,6 +123,15 @@ const RestaurantScreen = ({ navigation }) => {
               }}
             />
           ) : null}
+          <Card
+            title="Category"
+            content={restaurant.categories[0].title}
+            styles={{
+              cardContainer: styles.cardContainer,
+              cardTitle: styles.cardTitle,
+              cardContent: styles.cardContent,
+            }}
+          />
         </View>
       </View>
     </View>
@@ -194,6 +206,7 @@ const styles = StyleSheet.create({
     margin: 15,
     flexDirection: 'row',
     flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
   cardContainer: {
     backgroundColor: '#FAF9F6',
