@@ -6,6 +6,7 @@ import {
   FlatList,
   Image,
   Dimensions,
+  ScrollView,
 } from 'react-native';
 import yelp from '../api/yelp';
 import BackButton from '../components/BackButton';
@@ -46,7 +47,7 @@ const RestaurantScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <FlatList
           horizontal
           pagingEnabled
@@ -77,7 +78,7 @@ const RestaurantScreen = ({ navigation }) => {
           )}
           onViewableItemsChanged={onViewableItemsChanged}
           viewabilityConfig={viewabilityConfig}
-          style={{ height: screenHeight * 0.55 }} // Set FlatList height to 50% of screen height
+          style={{ height: screenHeight * 0.55 }} // Set FlatList height to 55% of screen height
         />
         <Text style={styles.nameStyle}>{restaurant.name}</Text>
         <View style={styles.addressContainer}>
@@ -133,7 +134,7 @@ const RestaurantScreen = ({ navigation }) => {
             }}
           />
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 };
@@ -203,7 +204,8 @@ const styles = StyleSheet.create({
     marginLeft: 6,
   },
   infoContainer: {
-    margin: 15,
+    marginTop: 20,
+    marginHorizontal: 15,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
