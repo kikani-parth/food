@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     fontSize: 14,
-    // color: '#FFFFFF',
   },
   ratingReviewContainer: {
     flexDirection: 'row',
