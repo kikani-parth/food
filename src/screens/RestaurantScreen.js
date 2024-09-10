@@ -12,7 +12,6 @@ import yelp from '../api/yelp';
 import BackButton from '../components/BackButton';
 import { Ionicons, Entypo } from '@expo/vector-icons';
 import Card from '../components/Card';
-import formatHours from '../utils/formatHours';
 
 const RestaurantScreen = ({ navigation }) => {
   const [restaurant, setRestaurant] = useState(null);
@@ -43,8 +42,6 @@ const RestaurantScreen = ({ navigation }) => {
   // Extract the restaurant address and join it into a single string
   const address = restaurant.location.display_address.join(', ');
 
-  const hours = formatHours(restaurant.hours || []);
-
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -69,8 +66,6 @@ const RestaurantScreen = ({ navigation }) => {
                 ))}
               </View>
               <BackButton
-                size={30}
-                color="white"
                 styles={styles.backButtonStyle}
                 navigation={navigation}
               />
@@ -82,12 +77,7 @@ const RestaurantScreen = ({ navigation }) => {
         />
         <Text style={styles.nameStyle}>{restaurant.name}</Text>
         <View style={styles.addressContainer}>
-          <Ionicons
-            name="location-sharp"
-            size={22}
-            color="red"
-            style={styles.locationIconStyle}
-          />
+          <Ionicons name="location-sharp" style={styles.locationIconStyle} />
           <Text style={styles.addressStyle}>{address}</Text>
         </View>
         <View style={styles.phoneContainer}>
@@ -155,7 +145,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: 'bold',
     margin: 15,
-    color: '#ffffff',
+    color: '#FFFFFF',
   },
   dotContainer: {
     position: 'absolute',
@@ -168,20 +158,25 @@ const styles = StyleSheet.create({
     height: 9,
     width: 9,
     borderRadius: 5,
-    backgroundColor: '#fff',
+    backgroundColor: '#FFFFFF',
     marginHorizontal: 5,
   },
   activeDot: {
     borderWidth: 1.5,
-    borderColor: 'black',
+    borderColor: '#000000',
   },
   backButtonStyle: {
+    size: 30,
+    color: '#FFFFFF',
     position: 'absolute',
     top: 40,
     left: 8,
     padding: 10,
   },
-  locationIconStyle: {},
+  locationIconStyle: {
+    size: 22,
+    color: 'red',
+  },
   addressContainer: {
     flexDirection: 'row',
     marginTop: 5,
@@ -190,7 +185,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   addressStyle: {
-    color: '#ffffff',
+    color: '#FFFFFF',
     marginLeft: 5,
   },
   phoneContainer: {
@@ -200,7 +195,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   phoneNumberStyle: {
-    color: '#ffffff',
+    color: '#FFFFFF',
     marginLeft: 6,
   },
   infoContainer: {
@@ -224,7 +219,7 @@ const styles = StyleSheet.create({
     color: '#FF5F15',
   },
   cardContent: {
-    color: 'black',
+    color: '#000000',
     marginTop: 5,
   },
 });
