@@ -27,7 +27,6 @@ const SearchScreen = () => {
   };
 
   return (
-    // <SafeAreaView style={styles.safeArea}>
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Image
@@ -37,13 +36,18 @@ const SearchScreen = () => {
         <View style={styles.headingContainer}>
           <Text style={styles.headingText}>Discover Local Delights</Text>
         </View>
+        <View style={styles.searchBarContainer}>
+          <SearchBar
+            searchTerm={searchTerm}
+            onSearchTermChange={(newSearchTerm) => setSearchTerm(newSearchTerm)}
+            onSearchTermSubmit={() => searchApi(searchTerm)}
+          />
+        </View>
       </View>
-      <SearchBar
-        searchTerm={searchTerm}
-        onSearchTermChange={(newSearchTerm) => setSearchTerm(newSearchTerm)}
-        onSearchTermSubmit={() => searchApi(searchTerm)}
-      />
-      {errorMessage ? <Text>{errorMessage}</Text> : null}
+
+      {errorMessage ? (
+        <Text style={{ color: 'red' }}>{errorMessage}</Text>
+      ) : null}
       <ScrollView>
         <RestaurantsList
           restuarants={filterRestaurantsByPrice('$')}
@@ -63,16 +67,10 @@ const SearchScreen = () => {
         />
       </ScrollView>
     </ScrollView>
-    // </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  // safeArea: {
-  //   flex: 1,
-  //   backgroundColor: '#121212',
-  //   paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0, // Add padding for Android status bar
-  // },
   container: {
     flex: 1,
     backgroundColor: '#121212',
@@ -98,6 +96,15 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  searchBarContainer: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
 });
 

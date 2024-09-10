@@ -2,12 +2,12 @@
 
 import React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import { Feather, Ionicons } from '@expo/vector-icons';
 
 const SearchBar = ({ searchTerm, onSearchTermChange, onSearchTermSubmit }) => {
   return (
     <View style={styles.backgroundStyle}>
-      <Feather name="search" style={styles.iconStyle} />
+      <Ionicons name="search" style={styles.iconStyle} />
       <TextInput
         autoCapitalize="none"
         autoCorrect={false}
@@ -24,7 +24,7 @@ const SearchBar = ({ searchTerm, onSearchTermChange, onSearchTermSubmit }) => {
 const styles = StyleSheet.create({
   backgroundStyle: {
     backgroundColor: 'rgb(230, 228, 228)',
-    height: 50,
+    height: 40,
     borderRadius: 5,
     marginHorizontal: 15,
     marginTop: 10,
