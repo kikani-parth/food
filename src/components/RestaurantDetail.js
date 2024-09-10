@@ -11,21 +11,11 @@ const RestaurantDetail = ({ restaurant }) => {
       <Text style={styles.nameStyle}>{restaurant.name}</Text>
       <View style={styles.ratingReviewContainer}>
         <View style={styles.ratingContainer}>
-          <Ionicons
-            name="star"
-            size={13}
-            color="#FF5F15"
-            style={styles.starIcon}
-          />
+          <Ionicons name="star" style={styles.starIcon} />
           <Text style={styles.ratingStyle}>{restaurant.rating}</Text>
         </View>
         <View style={styles.reviewContainer}>
-          <MaterialIcons
-            name="reviews"
-            size={13}
-            color="#FF4433"
-            style={styles.reviewIcon}
-          />
+          <MaterialIcons name="reviews" style={styles.reviewIcon} />
           <Text style={styles.reviewStyle}>{restaurant.review_count}</Text>
         </View>
       </View>
@@ -69,6 +59,8 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   starIcon: {
+    size: 13,
+    color: '#FF5F15',
     marginTop: 4,
     marginLeft: 5,
   },
@@ -91,6 +83,8 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   reviewIcon: {
+    size: 13,
+    color: '#FF4433',
     marginTop: 4,
     marginLeft: 5,
   },
