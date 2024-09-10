@@ -40,10 +40,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   titleStyle: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
     marginLeft: 15,
     marginBottom: 5,
+    color: '#FFFFFF',
   },
 });
 
