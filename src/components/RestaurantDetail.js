@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   starIcon: {
-    size: 13,
+    fontSize: 12,
     color: '#FF5F15',
     marginTop: 4,
     marginLeft: 5,
@@ -83,9 +83,9 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   reviewIcon: {
-    size: 13,
+    fontSize: 12,
     color: '#FF4433',
-    marginTop: 4,
+    marginTop: 5,
     marginLeft: 5,
   },
   reviewStyle: {

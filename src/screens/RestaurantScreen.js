@@ -66,6 +66,8 @@ const RestaurantScreen = ({ navigation }) => {
                 ))}
               </View>
               <BackButton
+                size={30}
+                color="#FFFFFF"
                 styles={styles.backButtonStyle}
                 navigation={navigation}
               />
@@ -166,15 +168,13 @@ const styles = StyleSheet.create({
     borderColor: '#000000',
   },
   backButtonStyle: {
-    size: 30,
-    color: '#FFFFFF',
     position: 'absolute',
     top: 40,
     left: 8,
     padding: 10,
   },
   locationIconStyle: {
-    size: 22,
+    fontSize: 22,
     color: 'red',
   },
   addressContainer: {
