@@ -7,11 +7,14 @@ import {
   Image,
   Dimensions,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import yelp from '../api/yelp';
 import BackButton from '../components/BackButton';
 import { Ionicons, Entypo } from '@expo/vector-icons';
 import Card from '../components/Card';
+import openMaps from '../utils/openMap';
+import callTelephone from '../utils/callTelephone';
 
 const RestaurantScreen = ({ navigation }) => {
   const [restaurant, setRestaurant] = useState(null);
@@ -41,6 +44,8 @@ const RestaurantScreen = ({ navigation }) => {
 
   // Extract the restaurant address and join it into a single string
   const address = restaurant.location.display_address.join(', ');
+
+  const coordinates = restaurant.coordinates;
 
   return (
     <View style={styles.container}>
@@ -78,14 +83,24 @@ const RestaurantScreen = ({ navigation }) => {
           style={{ height: screenHeight * 0.55 }} // Set FlatList height to 55% of screen height
         />
         <Text style={styles.nameStyle}>{restaurant.name}</Text>
-        <View style={styles.addressContainer}>
+
+        {/* Clickable address to open maps */}
+        <TouchableOpacity
+          onPress={() => openMaps(coordinates)}
+          style={styles.addressContainer}
+        >
           <Ionicons name="location-sharp" style={styles.locationIconStyle} />
           <Text style={styles.addressStyle}>{address}</Text>
-        </View>
-        <View style={styles.phoneContainer}>
+        </TouchableOpacity>
+
+        {/* Clickable phone number to call the restaurant */}
+        <TouchableOpacity
+          onPress={() => callTelephone(restaurant.phone)}
+          style={styles.phoneContainer}
+        >
           <Entypo name="old-phone" size={21} color="#6495ED" />
           <Text style={styles.phoneNumberStyle}>{restaurant.phone}</Text>
-        </View>
+        </TouchableOpacity>
         <View style={styles.infoContainer}>
           <Card
             title="Reviews"
